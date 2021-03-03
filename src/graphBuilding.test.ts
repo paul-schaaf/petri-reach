@@ -203,11 +203,11 @@ describe("buildReachabilityGraph", () => {
     };
     const arrows = buildReachabilityGraph(source);
     const expectedArrows = [
-      { from: "1,0,0", to: "0,2,0" },
-      { from: "0,2,0", to: "1,0,0" },
-      { from: "0,2,0", to: "0,1,1" },
-      { from: "0,1,1", to: "0,0,2" },
-      { from: "0,1,1", to: "1,0,0" }
+      { from: "1,0,0", to: "0,2,0", transition: "t1" },
+      { from: "0,2,0", to: "1,0,0", transition: "t2" },
+      { from: "0,2,0", to: "0,1,1", transition: "t3" },
+      { from: "0,1,1", to: "0,0,2", transition: "t3" },
+      { from: "0,1,1", to: "1,0,0", transition: "t4" }
     ];
     expect(expectedArrows.length).toEqual(arrows.length);
     expect(arrows).toEqual(expect.arrayContaining(expectedArrows));

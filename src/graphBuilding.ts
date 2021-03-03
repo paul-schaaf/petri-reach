@@ -45,7 +45,7 @@ const buildGraph = (
       tokens: any;
     };
   },
-  arrows: { from: string; to: string }[],
+  arrows: { from: string; to: string; transition: string }[],
   visited: { [k: string]: boolean },
   transitions: any
 ) => {
@@ -56,7 +56,7 @@ const buildGraph = (
     const newState = executeTransition(from, transitions[t]);
     const newStateString = nodesToString(newState);
 
-    arrows.push({ from: fromString, to: newStateString });
+    arrows.push({ from: fromString, to: newStateString, transition: t });
 
     if (!visited[newStateString]) {
       buildGraph(newState, arrows, visited, transitions);
@@ -74,7 +74,7 @@ export const buildReachabilityGraph = (source: any) => {
     ])
   );
   const visited: { [k: string]: boolean } = {};
-  const arrows: { from: string; to: string }[] = [];
+  const arrows: { from: string; to: string; transition: string }[] = [];
   buildGraph(initialValues, arrows, visited, transitions);
   return arrows;
 };

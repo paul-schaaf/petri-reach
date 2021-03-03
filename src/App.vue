@@ -1,5 +1,5 @@
 <template>
-  <input type="file" @change="onFile" style="width: 180px"/>
+  <input type="file" @change="onFile" style="width: 180px" />
   <div style="width: 100%; display: flex; justify-content: center">
     <svg style="display: block" width="1000" height="1000"></svg>
   </div>
@@ -20,21 +20,21 @@ export default defineComponent({
       fr.onload = () => {
         const arrows = buildReachabilityGraph(JSON.parse(fr.result as string));
         const g = new dagreD3.graphlib.Graph()
-          .setGraph({rankdir: "LR"})
+          .setGraph({ rankdir: "LR" })
           .setDefaultEdgeLabel(function() {
             return {};
           });
         const added: { [k: string]: boolean } = {};
-        arrows.forEach(({ from, to }) => {
+        arrows.forEach(({ from, to, transition }) => {
           if (!added[from]) {
-            g.setNode(from, {label: from});
+            g.setNode(from, { label: from });
             added[from] = true;
           }
           if (!added[to]) {
-            g.setNode(to, {label: to});
+            g.setNode(to, { label: to });
             added[to] = true;
           }
-          g.setEdge(from, to);
+          g.setEdge(from, to, { label: transition });
         });
 
         const render = new dagreD3.render();
@@ -43,7 +43,8 @@ export default defineComponent({
 
         render(d3.select("svg g") as any, g as any);
 
-        const xCenterOffset = (svg.attr("width") as unknown as number - g.graph().width!) / 2;
+        const xCenterOffset =
+          (((svg.attr("width") as unknown) as number) - g.graph().width!) / 2;
         svgGroup.attr("transform", "translate(" + xCenterOffset + ", 20)");
         svg.attr("height", g.graph().height! + 40);
       };
