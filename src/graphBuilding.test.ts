@@ -166,42 +166,50 @@ describe("buildReachabilityGraph", () => {
   test("buildReachabilityGraph", () => {
     const source = {
       nodes: {
-        "s1": {
+        s1: {
           capacity: Infinity,
           tokens: 1
         },
-        "s2": {
+        s2: {
           capacity: Infinity,
           tokens: 0
         },
-        "s3": {
+        s3: {
           capacity: Infinity,
           tokens: 0
         }
       },
       transitions: {
-        "t1": {
+        t1: {
           from: [["s1", 1]],
           to: [["s2", 2]]
         },
-        "t2": {
+        t2: {
           from: [["s2", 2]],
           to: [["s1", 1]]
         },
-        "t3": {
+        t3: {
           from: [["s2", 1]],
           to: [["s3", 1]]
         },
-        "t4": {
-          from: [["s2", 1], ["s3", 1]],
+        t4: {
+          from: [
+            ["s2", 1],
+            ["s3", 1]
+          ],
           to: [["s1", 1]]
         }
       }
-    }
+    };
     const arrows = buildReachabilityGraph(source);
-    const expectedArrows = [{"from":"1,0,0","to":"0,2,0"},{"from":"0,2,0","to":"1,0,0"},{"from":"0,2,0","to":"0,1,1"},{"from":"0,1,1","to":"0,0,2"},{"from":"0,1,1","to":"1,0,0"}];
+    const expectedArrows = [
+      { from: "1,0,0", to: "0,2,0" },
+      { from: "0,2,0", to: "1,0,0" },
+      { from: "0,2,0", to: "0,1,1" },
+      { from: "0,1,1", to: "0,0,2" },
+      { from: "0,1,1", to: "1,0,0" }
+    ];
     expect(expectedArrows.length).toEqual(arrows.length);
-    expect(arrows)
-      .toEqual(expect.arrayContaining(expectedArrows));
-  })
-})
+    expect(arrows).toEqual(expect.arrayContaining(expectedArrows));
+  });
+});
