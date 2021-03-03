@@ -1,0 +1,16 @@
+{
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "testMatch": [
+    "**/__tests__/**/*.+(ts|tsx|js)",
+    "**/?(*.)+(spec|test).+(ts|tsx|js)"
+  ],
+  "transform": {
+    "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.ts?$": "ts-jest"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!lodash-es)"
+  ]
+}
