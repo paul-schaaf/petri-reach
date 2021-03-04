@@ -9,9 +9,17 @@
       </template>
     </modal>
   </div>
-  <input type="file" @change="onFile" style="width: 180px" />
-  <div style="width: 100%; display: flex; justify-content: center">
-    <svg style="display: block" width="1000" height="1000"></svg>
+  <div style="display: flex; justify-content: center">
+    <input
+      type="file"
+      @change="onFile"
+      style="width: 180px; margin-top: 20px"
+    />
+  </div>
+  <div
+    style="width: 100%; display: flex; justify-content: center; margin-top: 20px"
+  >
+    <svg style="display: block" width="1200"></svg>
   </div>
 </template>
 
