@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "d3": "^6.5.0",
     "dagre-d3": "^0.6.4",
+    "hljs": "^6.2.3",
     "lodash-es": "^4.17.21",
     "vue": "^3.0.0",
     "yaml": "^1.10.0"
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@types/d3": "^6.3.0",
     "@types/dagre-d3": "^0.6.2",
+    "@types/highlightjs": "^10.1.0",
     "@types/jest": "^26.0.20",
     "@types/lodash-es": "^4.17.4",
     "@typescript-eslint/eslint-plugin": "^2.33.0",

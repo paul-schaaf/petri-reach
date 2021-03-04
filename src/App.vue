@@ -1,4 +1,14 @@
 <template>
+  <div>
+    <button id="show-modal" @click="showModal = true">
+      Show required format
+    </button>
+    <modal v-if="showModal" @close="showModal = false">
+      <template v-slot:header>
+        <h3>Required Format</h3>
+      </template>
+    </modal>
+  </div>
   <input type="file" @change="onFile" style="width: 180px" />
   <div style="width: 100%; display: flex; justify-content: center">
     <svg style="display: block" width="1000" height="1000"></svg>
@@ -6,13 +16,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { buildReachabilityGraph } from "./graphBuilding";
+import { defineComponent, onMounted, ref } from "vue";
 import dagreD3 from "dagre-d3";
 import * as d3 from "d3";
 
+import Modal from "./Modal.vue";
+import { buildReachabilityGraph } from "./graphBuilding";
+
 export default defineComponent({
   name: "App",
+  components: {
+    Modal
+  },
   setup() {
     const onFile = (ev: any) => {
       const file = ev.target.files[0];
@@ -52,7 +67,7 @@ export default defineComponent({
       fr.readAsText(file);
     };
 
-    return { onFile };
+    return { onFile, showModal: ref(false) };
   }
 });
 </script>
